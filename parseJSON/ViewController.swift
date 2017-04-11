@@ -40,7 +40,6 @@ class ViewController: UITableViewController  {
             return
         }
         
-        
         guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
             print("Error")
             return
