@@ -25,6 +25,7 @@ class ViewController: UITableViewController  {
     }
     
     func parseJSON() {
+        
         let url = URL(string: "https://api.myjson.com/bins/vi56v")
         
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
@@ -41,7 +42,7 @@ class ViewController: UITableViewController  {
         
         
         guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-            print("Not containing JSON")
+            print("Error")
             return
         }
         
