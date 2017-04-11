@@ -29,31 +29,31 @@ class ViewController: UITableViewController  {
         
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             
-            guard error == nil else {
-                print("returning error")
-                return
-            }
-            
-            guard let content = data else {
-                print("not returning data")
-                return
-            }
-            
-            
-            guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-                print("Not containing JSON")
-                return
-            }
-            
-            if let array = json["companies"] as? [String] {
-                self.tableArray = array
-            }
-            
-            print(self.tableArray)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        guard error == nil else {
+            print("returning error")
+            return
+        }
+        
+        guard let content = data else {
+            print("not returning data")
+            return
+        }
+        
+        
+        guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
+            print("Not containing JSON")
+            return
+        }
+        
+        if let array = json["companies"] as? [String] {
+            self.tableArray = array
+        }
+        
+        print(self.tableArray)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
             
         }
         
