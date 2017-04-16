@@ -92,7 +92,26 @@ extension ViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            self.tableArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            print(self.tableArray)
+        }
+        
+        let share = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
+            // share item at indexPath
+            print("I want to share: \(self.tableArray[indexPath.row])")
+        }
+        
+        share.backgroundColor = UIColor.lightGray
+    
+        return [delete, share]
+        
+    }
+    
 }
 
 
